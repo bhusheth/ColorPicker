@@ -1,20 +1,21 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { setColor } from '../actions/colorSelector'
+import { setColor } from '../actions/colorSelector';
 
-function ColorPicker(props) {
+class ColorPicker extends PureComponent{
+    render() {
         return (
             <div className='colorPickerMain'>
                 {
-                    props.allColors.map((color, key) => {
+                    this.props.allColors.map((color, key) => {
                         return (
                             <React.Fragment key={key}>
                                 <div
                                 className='colorSquare'
                                 style={{backgroundColor: color}}
                                 key={key}
-                                onClick={() => props.setColor(color)}
+                                onClick={() => this.props.setColor(color)}
                                 >
                                     {color}
                                 </div>
@@ -24,6 +25,7 @@ function ColorPicker(props) {
                 }
             </div>
         );
+    }
 }
 
 const mapStateToProps = (state) => ({
@@ -34,7 +36,7 @@ const mapDispatchToProps = {
     setColor
 }
 
-ColorPicker.prototype = {
+ColorPicker.propTypes = {
     allColors: PropTypes.array.isRequired
 }
 
