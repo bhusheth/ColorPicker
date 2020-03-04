@@ -9,7 +9,10 @@ class ColorViewer extends PureComponent {
                 className='ColorViewer'
                 style={{ backgroundColor: this.props.selectedColor }}
             >
-                Selected Color {this.props.selectedColor}
+                {this.props.selectedColor ? 
+                    `Selected Color ${this.props.selectedColor}` :
+                    'Please select a color'   
+                }
                 <div>
                     <button onClick={() => this.props.clearColor()}>Clear Color!</button>
                 </div>
